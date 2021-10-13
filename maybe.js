@@ -25,3 +25,5 @@ console.log(getResult("hello world"));
 console.log(getResult(null));
 // 如果输入的是null，是不会报错的
 // MayBe { _value: null }
+
+// 遗留问题：如果map中间有好几步，最后返回是null，并不知道是哪一个步骤返回的。
