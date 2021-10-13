@@ -6,6 +6,8 @@
  */
 const { task } = require("folktale/concurrency/task");
 const fs = require("fs");
+const { split, find } = require("lodash/fp");
+
 function readFile(filename) {
   return task((resolver) => {
     fs.readFile(filename, "utf-8", (err, data) => {
@@ -17,6 +19,10 @@ function readFile(filename) {
 
 // readFile调用返回Task函子，调用要用run方法
 readFile("package.json")
+  //在run之前调用map方法，在map方法中会处理的拿到文件返回结果
+  // 在使用函子的时候就没有必要想的实现机制
+  .map(split("\n"))
+  .map(find((x) => x.includes("version")))
   .run()
   // 现在没有对resolve进行处理，可以使用task的listen去监听获取的结果
   // listen传一个对象，onRejected是监听错误结果，onResolved是监听正确结果
@@ -25,6 +31,6 @@ readFile("package.json")
       console.log(err);
     },
     onResolved: (value) => {
-      console.log(value);
+      console.log(value); // "version": "1.0.0",
     },
   });
