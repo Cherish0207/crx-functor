@@ -4,16 +4,20 @@
  *   map函数返回一个新的函子，把fn处理的值返回给新的函子来保存
  */
 class Container {
+  // 使用类的静态方法，of替代了new Container的作用
+  static of(value) {
+    return new Container(value);
+  }
   constructor(value) {
     this._value = value;
   }
   map(fn) {
-    return new Container(fn(this._value));
+    return Container.of(fn(this._value));
   }
 }
 
 // 创建一个函子的对象
-let r = new Container(5)
+let r = Container.of(5)
   .map((x) => x + 1) // 6
   .map((x) => x ** 2); // 36
 
