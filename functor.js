@@ -23,3 +23,6 @@ let r = Container.of(5)
 
 // 返回了一个container函子对象，里面有值是36，不对外公布
 console.log(r); //Container { _value: 36 }
+
+// 遗留问题：如果 value 是 null undefined，怎么办？
+// Container.of(null).map((x) => x.toUpper); // 报错，使得函数不纯
