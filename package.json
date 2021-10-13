@@ -1,0 +1,15 @@
+{
+  "name": "crx-functor",
+  "version": "1.0.0",
+  "description": "[函数式编程（五）—— 函子](https://www.jianshu.com/p/f5ff293bcdd9) Functor",
+  "main": "either.js",
+  "scripts": {
+    "start": "node either.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
